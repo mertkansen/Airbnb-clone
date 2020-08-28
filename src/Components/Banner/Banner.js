@@ -2,31 +2,38 @@ import React, {useState} from 'react'
 import './Banner.css'
 
 import {
-    Button
+    Button, Search
 } from '../indexer'
+
+import {
+    useHistory
+} from 'react-router-dom'
 
 const Banner = () => {
     const [showSearch, setShowSearch] = useState(false)
-
+    const history = useHistory()
 
     return (
         <div className="banner">
             <div className="banner__search">
-                {
-                    showSearch && <h1>Show Date Picker</h1>
-                }
                 <Button
                     className="banner__searchButton"
                     onClick={() => setShowSearch(!showSearch)}
                     variant="outlined"
-                >Search Dates</Button>
+                >{showSearch ? "Hide" : "Search Dates"}</Button>
+                {
+                    showSearch && <Search />
+                }
             </div>
-            <div className="banner__info">
-                <h1>Get out and stretch your imag ination</h1>
+            <div hidden={showSearch} className="banner__info">
+                <h1>Get out and stretch your imagination</h1>
                 <h5>
                     Plan a different kind of getaway to uncover the hidden gems near you.
                 </h5>
-                <Button variant="outlined">Explore Nearby</Button>
+                <Button 
+                    variant="outlined" 
+                    onClick={() => history.push('/search')}
+                >Explore Nearby</Button>
             </div>
         </div>
     )

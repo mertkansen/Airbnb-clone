@@ -3,23 +3,27 @@ import React from 'react';
 import './App.css';
 
 import {
-  Header, Home
+  Switch, Route
+} from 'react-router-dom'
+
+import {
+  Header, Home, Footer, SearchPage
 } from './Components/indexer'
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <Home />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
 
-
-              {/* Search */}
-          {/* Cards */}
-          {/* Footer */}
-
-      {/* SearchPage */}
-
-          {/* ... */}
+        <Route path='/search'>
+          <SearchPage />
+        </Route>
+      </Switch>
+      <Footer />
     </div>
   );
 }
